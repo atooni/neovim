@@ -1,1 +1,1 @@
-nmap <space>e :CocCommand explorer<CR>
+nmap <space>q :CocCommand explorer<CR>
