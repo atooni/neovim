@@ -1,0 +1,22 @@
+{
+  "metals.statusBarEnabled": true,
+  "metals.showInferredType": true,
+  "metals.showImplicitArguments": true,
+
+  "coc.preferences.formatOnSaveFiletypes": ["scala"],
+
+  "explorer.git.enable": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.git.showIgnored": true,
+  "explorer.file.git.showUntrackedFiles": true,
+
+  "explorer.keyMappings.global": {
+    "<cr>" : ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "v" : "open:vsplit",
+    "s" : "open:split",
+    "e": false
+  }
+
+}
+
