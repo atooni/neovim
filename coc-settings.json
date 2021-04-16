@@ -2,7 +2,7 @@
   "metals.statusBarEnabled": true,
   "metals.showInferredType": true,
   "metals.showImplicitArguments": true,
-  "metals.serverVersion": "0.10.0",
+  "metals.serverVersion": "0.10.1",
 
   "coc.preferences.formatOnSaveFiletypes": ["scala"],
 
