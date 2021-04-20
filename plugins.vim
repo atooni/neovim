@@ -1,5 +1,6 @@
 call plug#begin('~/.nvim/plugged')
   Plug 'tpope/vim-fugitive'
+  Plug 'junegunn/fzf.vim' 
   Plug 'ryanoasis/vim-devicons'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
