@@ -13,7 +13,7 @@ set shiftwidth=2
 set expandtab
 set copyindent
 
-colorscheme OceanicNextLight
+colorscheme apprentice
 
 " You will have a bad experience with diagnostic messages with the default 4000.
 set updatetime=300
