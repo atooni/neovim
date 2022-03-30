@@ -1,6 +1,6 @@
-source ~/.nvim/plugins.vim 
-source ~/.nvim/settings.vim
-source ~/.nvim/keymap.vim
-source ~/.nvim/explorer.vim
-source ~/.nvim/cocmap.vim
-source ~/.nvim/scala.vim
+source ~/.config/nvim/plugins.vim 
+source ~/.config/nvim/settings.vim
+source ~/.config/nvim/keymap.vim
+source ~/.config/nvim/explorer.vim
+source ~/.config/nvim/cocmap.vim
+source ~/.config/nvim/scala.vim
