@@ -1,7 +1,7 @@
-nnoremap <C-Up> :resize +2<cr>
-nnoremap <C-Down> :resize -2<cr>
-nnoremap <C-Right> :vertical resize +2<cr>
-nnoremap <C-Left> :vertical resize -2<cr>
+nnoremap <S-Up> :resize +2<cr>
+nnoremap <S-Down> :resize -2<cr>
+nnoremap <S-Right> :vertical resize +2<cr>
+nnoremap <S-Left> :vertical resize -2<cr>
 
 " Easier navigation in vi windows
 nnoremap <M-Right> <C-w><Right>

@@ -24,3 +24,4 @@ set shortmess+=c
 " Always show signcolumns
 set signcolumn=yes
 
+let mapleader=","
