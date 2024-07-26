@@ -16,7 +16,6 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 keymap.set("n", "<leader>sg", "<C-w>5>", { desc = "Increase window width" })
-keymap.set("n", "<leader>sG", "<C-w>|", { desc = "Maximise window width" })
 keymap.set("n", "<leader>ss", "<C-w>5<", { desc = "Decrease window width" })
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
