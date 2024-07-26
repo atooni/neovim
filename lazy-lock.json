@@ -8,6 +8,8 @@
   "lualine.nvim": { "branch": "master", "commit": "544dd1583f9bb27b393f598475c89809c4d5e86b" },
   "nvim-highlight-colors": { "branch": "main", "commit": "a8f6952cb1ff7bde864a34c502f1a42c360a6662" },
   "nvim-tree.lua": { "branch": "master", "commit": "4e396b26244444c911b73e9f2f40ae0115351fd1" },
+  "nvim-treesitter": { "branch": "master", "commit": "e265fec94c7dc0c8c64cb86820ff5ad3ee135c7d" },
+  "nvim-ts-autotag": { "branch": "main", "commit": "dc5e1687ab76ee02e0f11c5ce137f530b36e98b3" },
   "nvim-web-devicons": { "branch": "master", "commit": "e612de3d3a41a6b7be47f51e956dddabcbf419d9" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
