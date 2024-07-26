@@ -38,6 +38,9 @@ return {
         "dockerfile",
         "gitignore",
         "query",
+        "helm", 
+        "rust", 
+        "scala",
       },
       incremental_selection = {
         enable = true,
