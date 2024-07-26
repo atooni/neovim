@@ -18,9 +18,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  change_detection = {
-    notify = false,
-  },
   spec = {
     -- import your plugins
     { import = "atooni.plugins" },
@@ -31,6 +28,9 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = {
     enabled = true,
+    notify = false,
+  },
+  change_detection = {
     notify = false,
   },
 })
