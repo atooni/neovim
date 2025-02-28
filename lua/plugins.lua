@@ -37,11 +37,27 @@ require("lazy").setup({
     end
   },
   {
+    "williamboman/mason.nvim",
+    config = function() 
+      local mason = require("mason")
+      mason.setup()
+    end
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      local masonLsp = require("mason-lspconfig")
+      masonLsp.setup({
+        ensure_installed = { "clangd" }
+      })
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.clangd.setup({})
     end
-  }
+  },
 })
 
