@@ -20,6 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   require("plugins.themes"),
   require("plugins.lsp"),
+  require("plugins.tree"),
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
