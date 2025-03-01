@@ -1,5 +1,5 @@
 -- Use line relative line numbers 
-vim.opt.nu = true 
+vim.opt.nu = true
 vim.opt.rnu = true
 
 -- ensure new windows are opened to the left 
@@ -11,7 +11,7 @@ vim.opt.splitright = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 -- Use the tabstop value for indent and dedent 
-vim.opt.shiftwidth = 0 
+vim.opt.shiftwidth = 0
 
 -- Synchronizes the NeoVim Clipboard with the System ClipBoard
 --vim.opt.clipboard = "unnamedplus"
