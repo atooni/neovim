@@ -8,6 +8,7 @@ return(
     end
   },
   {
+    -- bridge mason and nvim-lspconfig
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "mason.nvim" },
     config = function()
@@ -19,6 +20,8 @@ return(
         function(server_name)
           require("lspconfig")[server_name].setup({})
         end,
+        -- language specific setups if required 
+        -- See language server docs for config options 
         ["lua_ls"] = function()
           require("lspconfig")["lua_ls"].setup({
             settings = {
@@ -34,6 +37,7 @@ return(
     end
   },
   {
+    -- Required as it will be called by mason-lspconfig
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" }
   }
