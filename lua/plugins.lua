@@ -22,6 +22,7 @@ require("lazy").setup({
   require("plugins.lsp"),
   require("plugins.tree"),
   require("plugins.telescope"),
+  require("plugins.lazygit"),
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
