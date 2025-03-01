@@ -14,7 +14,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 0 
 
 -- Synchronizes the NeoVim Clipboard with the System ClipBoard
-vim.opt.clipboard = "unnamedplus"
+--vim.opt.clipboard = "unnamedplus"
 
 -- vim.opt.scrolloff = 999
 

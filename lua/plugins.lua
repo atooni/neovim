@@ -18,12 +18,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {
-    "rebelot/kanagawa.nvim",
-    config = function()
-      vim.cmd.colorscheme("kanagawa-wave")
-    end
-  },
+  require("plugins.themes"),
+  require("plugins.lsp"),
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
@@ -36,42 +32,5 @@ require("lazy").setup({
       })
     end
   },
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      local mason = require("mason")
-      mason.setup()
-    end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "mason.nvim" },
-    config = function()
-      local mason_lsp = require("mason-lspconfig")
-      mason_lsp.setup({
-        ensure_installed = { "clangd", "lua_ls" }
-      })
-      mason_lsp.setup_handlers({
-        function(server_name)
-          require("lspconfig")[server_name].setup({})
-        end,
-        ["lua_ls"] = function()
-          require("lspconfig")["lua_ls"].setup({
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" }
-                }
-              }
-            }
-          })
-        end
-      })
-    end
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "mason-lspconfig.nvim" }
-  }
 })
 
