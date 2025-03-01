@@ -1,4 +1,4 @@
-local theme = "material"
+local theme = "kanagawa"
 
 return (
 {

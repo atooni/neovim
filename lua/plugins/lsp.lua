@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 return(
 {
   {
@@ -39,7 +41,10 @@ return(
   {
     -- Required as it will be called by mason-lspconfig
     "neovim/nvim-lspconfig",
-    dependencies = { "mason-lspconfig.nvim" }
+    dependencies = { "mason-lspconfig.nvim" },
+    config = function()
+      map('n', '<leader>ld', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "LSP: Go to definition" })
+    end
   }
 }
 )
