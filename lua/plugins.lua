@@ -20,6 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   require("plugins.themes"),
   require("plugins.lsp"),
+  require("plugins.completion"),
   require("plugins.tree"),
   require("plugins.telescope"),
   require("plugins.lazygit"),
