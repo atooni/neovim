@@ -16,7 +16,7 @@ return(
     config = function()
       local mason_lsp = require("mason-lspconfig")
       mason_lsp.setup({
-        ensure_installed = { "clangd", "lua_ls", "ts_ls" }
+        ensure_installed = { "clangd", "lua_ls", "ts_ls", "eslint" }
       })
       mason_lsp.setup_handlers({
         function(server_name)
@@ -34,6 +34,11 @@ return(
               }
             }
           })
+        end,
+        ["eslint"] = function()
+          require('lspconfig').eslint.setup {
+            root_dir = require('lspconfig').util.root_pattern('.git', 'package.json'),
+          }
         end
       })
     end
@@ -43,6 +48,7 @@ return(
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
+      vim.lsp.set_log_level("debug")
       map('n', '<leader>ld', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "LSP: Go to definition" })
     end
   }
