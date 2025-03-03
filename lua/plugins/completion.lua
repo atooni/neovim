@@ -8,7 +8,12 @@ return (
   version = '*',
 
   opts = {
-    keymap = { preset = 'default' },
+    keymap = {
+      preset = 'none',
+      ['<Up>'] = { 'select_prev', 'fallback' },
+      ['<Down>'] = { 'select_next', 'fallback' },
+      ['<C-CR>'] = { 'select_and_accept'}
+    },
 
     appearance = {
       use_nvim_cmp_as_default = true,

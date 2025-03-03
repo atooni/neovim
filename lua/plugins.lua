@@ -22,7 +22,7 @@ require("lazy").setup({
   require("plugins.lsp"),
   require("plugins.completion"),
   require("plugins.tree"),
-  require("plugins.telescope"),
+  require("plugins.fzf-lua"),
   require("plugins.lazygit"),
   require("plugins.gitsigns"),
   require("plugins.lualine"),
