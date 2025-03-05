@@ -1,5 +1,14 @@
 local map = vim.keymap.set
 
+local function contains(arr, x)
+  for _, v in ipairs(arr) do
+    if v == x then
+      return true
+    end
+  end
+  return false
+end
+
 return(
 {
   {
@@ -26,6 +35,10 @@ return(
         -- See language server docs for config options 
         ["ts_ls"] = function()
           require("lspconfig")["ts_ls"].setup({
+            on_attach = function(client, _)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,  
             handlers = {
               ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
 
@@ -34,17 +47,14 @@ return(
 
                 -- Log each diagnostic
                 for i, diag in ipairs(result.diagnostics) do
-                  print(string.format("[%d] : Source [%s] Code: %s, Message: %s",
-                  i,
-                  diag.source,
-                  tostring(diag.code),
-                  diag.message))
+                  vim.print(diag)
                 end
 
-                -- Filter out ALL unused variable warnings (code 6133)
+                -- Filter out ALL unused variable warnings
+                local ignored_codes = { 6133, 6138 }
                 local filtered_diagnostics = {}
                 for _, diagnostic in ipairs(result.diagnostics) do
-                  if diagnostic.code ~= 6133 then
+                  if not contains(ignored_codes, diagnostic.code) then
                     table.insert(filtered_diagnostics, diagnostic)
                   end
                 end
@@ -75,9 +85,36 @@ return(
 
         ["eslint"] = function()
           require('lspconfig').eslint.setup {
+            on_attach = function(client, _)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
             root_dir = require('lspconfig').util.root_pattern('.git', 'package.json'),
           }
         end
+      })
+    end
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function()
+      local plugin = require("mason-tool-installer")
+      plugin.setup({
+        ensure_installed = {
+          "prettier"
+        }
+      })
+    end
+  },
+  {
+    'stevearc/conform.nvim',
+    config = function()
+      local plugin = require("conform")
+      plugin.setup({
+        formatters_by_ft = {
+          typescript = { "prettier" },
+          javascript = { "prettier" },
+        },
       })
     end
   },
@@ -86,7 +123,6 @@ return(
     "neovim/nvim-lspconfig",
     dependencies = { "mason-lspconfig.nvim" },
     config = function()
-      vim.lsp.set_log_level("debug")
       map('n', '<leader>ld', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = "LSP: Go to definition" })
     end
   }
