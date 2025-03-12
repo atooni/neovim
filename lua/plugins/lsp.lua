@@ -44,7 +44,7 @@ return {
                 print('Number of diagnostics: ' .. #result.diagnostics)
 
                 -- Log each diagnostic
-                for i, diag in ipairs(result.diagnostics) do
+                for _, diag in ipairs(result.diagnostics) do
                   vim.print(diag)
                 end
 
