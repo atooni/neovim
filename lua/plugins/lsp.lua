@@ -147,6 +147,12 @@ return {
         ':lua vim.lsp.buf.definition()<CR>',
         { noremap = true, silent = true, desc = 'LSP: Go to definition' }
       )
+      map(
+        'n',
+        '<leader>lr',
+        ':lua vim.lsp.buf.rename()<CR>',
+        { noremap = true, silent = true, desc = 'LSP: Rename symbol' }
+      )
     end,
   },
 }

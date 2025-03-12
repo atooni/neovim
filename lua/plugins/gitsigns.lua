@@ -20,7 +20,7 @@ return {
     )
     map(
       'n',
-      '<leader>hs',
+      '<leader>hu',
       ':Gitsigns unstage_hunk<CR>',
       { noremap = true, silent = true, desc = 'Unstage the current hunk' }
     )
