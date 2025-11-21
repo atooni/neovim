@@ -93,33 +93,9 @@ return {
             }
           end,
 
+          -- tailwindcss is configured directly in nvim-lspconfig section
           ['tailwindcss'] = function()
-            require('lspconfig').tailwindcss.setup {
-              filetypes = {
-                'html',
-                'css',
-                'scss',
-                'javascript',
-                'javascriptreact',
-                'typescript',
-                'typescriptreact',
-                'vue',
-                'svelte',
-                'rust',
-              },
-              init_options = {
-                userLanguages = {
-                  rust = 'html',
-                },
-              },
-              root_dir = require('lspconfig').util.root_pattern(
-                'tailwind.config.js',
-                'tailwind.config.cjs',
-                'tailwind.config.mjs',
-                'tailwind.config.ts',
-                'Cargo.toml'
-              ),
-            }
+            -- Skip, configured separately
           end,
         },
       }
@@ -185,6 +161,18 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = { 'mason-lspconfig.nvim' },
     config = function()
+      -- Configure tailwindcss with rust support
+      local lspconfig = require 'lspconfig'
+      lspconfig.tailwindcss.setup {
+        filetypes = { 'rust', 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte' },
+        init_options = {
+          userLanguages = {
+            rust = 'html',
+          },
+        },
+        root_dir = lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts', 'Cargo.toml'),
+      }
+
       map(
         'n',
         '<leader>ld',
