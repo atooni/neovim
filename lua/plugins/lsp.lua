@@ -26,6 +26,8 @@ return {
       mason_lsp.setup {
         ensure_installed = { 'clangd', 'lua_ls', 'ts_ls', 'eslint', 'rust_analyzer' },
       }
+      -- Ensure lspconfig is loaded before setting up handlers
+      require('lspconfig')
       mason_lsp.setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {}
