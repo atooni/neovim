@@ -20,7 +20,7 @@ return {
   {
     -- bridge mason and nvim-lspconfig
     'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'mason.nvim' },
+    dependencies = { 'mason.nvim' , 'neovim/nvim-lspconfig'},
     config = function()
       local mason_lsp = require 'mason-lspconfig'
       mason_lsp.setup {
