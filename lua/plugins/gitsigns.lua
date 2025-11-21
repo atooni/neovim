@@ -4,7 +4,13 @@ return {
   'lewis6991/gitsigns.nvim',
   config = function()
     local plugin = require 'gitsigns'
-    plugin.setup()
+    plugin.setup {
+      show_deleted = true,
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 500,
+      },
+    }
     map('n', '<leader>hn', ':Gitsigns next_hunk<CR>', { noremap = true, silent = true, desc = 'Go to the next hunk' })
     map(
       'n',
@@ -23,6 +29,12 @@ return {
       '<leader>hu',
       ':Gitsigns unstage_hunk<CR>',
       { noremap = true, silent = true, desc = 'Unstage the current hunk' }
+    )
+    map(
+      'n',
+      '<leader>hv',
+      ':Gitsigns preview_hunk<CR>',
+      { noremap = true, silent = true, desc = 'Preview the current hunk (show diff)' }
     )
   end,
 }

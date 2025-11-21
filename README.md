@@ -57,6 +57,8 @@ This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 
 Leader key: `,` (comma)
 
+**Tip**: Press the leader key and wait 500ms to see all available keybindings in a popup (powered by which-key.nvim)
+
 ### File Navigation
 
 | Key | Action |
@@ -94,8 +96,14 @@ Leader key: `,` (comma)
 | `<leader>gg` | Open LazyGit |
 | `<leader>hn` | Next hunk |
 | `<leader>hp` | Previous hunk |
+| `<leader>hv` | Preview hunk (show diff) |
 | `<leader>hs` | Stage hunk |
 | `<leader>hu` | Unstage hunk |
+
+**Git Features:**
+- Inline diff: Deleted lines shown as virtual text
+- Git blame: Shows author and commit info after 500ms delay on current line
+- Gutter signs: Visual indicators for added/modified/deleted lines
 
 ### Formatting
 
@@ -137,12 +145,13 @@ Leader key: `,` (comma)
 ### Git Integration
 
 - **lazygit.nvim**: Terminal UI for Git
-- **gitsigns.nvim**: Git decorations and hunk management
+- **gitsigns.nvim**: Git decorations, inline diff view, and hunk management with git blame
 - **diffview.nvim**: Git diff viewer
 
 ### UI
 
 - **lualine.nvim**: Statusline
+- **which-key.nvim**: Keybinding help popup
 - **kanagawa.nvim**: Theme (default)
 - **the-matrix.nvim**: Alternative theme
 - **material.nvim**: Alternative theme
@@ -167,7 +176,8 @@ Leader key: `,` (comma)
 │       ├── lsp.lua           # LSP configuration
 │       ├── lualine.lua       # Statusline
 │       ├── themes.lua        # Theme configuration
-│       └── tree.lua          # File explorer
+│       ├── tree.lua          # File explorer
+│       └── which-key.lua     # Keybinding help
 ├── lazy-lock.json             # Plugin version lock
 └── stylua.toml               # Stylua formatter config
 ```

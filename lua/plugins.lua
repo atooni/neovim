@@ -20,6 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   require 'plugins.themes',
   { 'nvim-tree/nvim-web-devicons', opts = {} },
+  require 'plugins.which-key',
   require 'plugins.lsp',
   require 'plugins.completion',
   require 'plugins.tree',
