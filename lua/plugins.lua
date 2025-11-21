@@ -32,7 +32,7 @@ require('lazy').setup {
     'nvim-treesitter/nvim-treesitter',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'typescript' },
+        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'rust' },
         auto_install = false,
         highlight = {
           enable = true,

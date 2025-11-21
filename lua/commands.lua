@@ -5,6 +5,7 @@ vim.api.nvim_create_user_command('FormatProject', function()
     'tsx',
     'jsx',
     'lua',
+    'rs',
   }
 
   local file_pattern = table.concat(

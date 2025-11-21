@@ -24,7 +24,7 @@ return {
     config = function()
       local mason_lsp = require 'mason-lspconfig'
       mason_lsp.setup {
-        ensure_installed = { 'clangd', 'lua_ls', 'ts_ls', 'eslint' },
+        ensure_installed = { 'clangd', 'lua_ls', 'ts_ls', 'eslint', 'rust_analyzer' },
       }
       mason_lsp.setup_handlers {
         function(server_name)
@@ -97,6 +97,7 @@ return {
         ensure_installed = {
           'prettier',
           'stylua',
+          'rustfmt',
         },
       }
     end,
@@ -115,6 +116,7 @@ return {
           typescript = { 'prettier' },
           javascript = { 'prettier' },
           lua = { 'stylua' },
+          rust = { 'rustfmt' },
         },
         format_on_save = {
           timeout_ms = 500,
@@ -125,6 +127,12 @@ return {
         pattern = { '*.ts', '*.js', '*.tsx', '*.jsx' },
         callback = function(args)
           vim.cmd 'EslintFixAll'
+          plugin.format { bufnr = args.buf }
+        end,
+      })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = { '*.rs' },
+        callback = function(args)
           plugin.format { bufnr = args.buf }
         end,
       })
