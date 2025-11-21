@@ -92,6 +92,28 @@ return {
               root_dir = require('lspconfig').util.root_pattern('.git', 'package.json'),
             }
           end,
+
+          ['tailwindcss'] = function()
+            require('lspconfig').tailwindcss.setup {
+              filetypes = {
+                'html',
+                'css',
+                'scss',
+                'javascript',
+                'javascriptreact',
+                'typescript',
+                'typescriptreact',
+                'vue',
+                'svelte',
+                'rust',
+              },
+              init_options = {
+                userLanguages = {
+                  rust = 'html',
+                },
+              },
+            }
+          end,
         },
       }
     end,
