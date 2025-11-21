@@ -20,6 +20,7 @@ return {
       { '<leader>g', group = 'Git' },
       { '<leader>e', group = 'Explorer' },
       { '<leader>c', group = 'Code' },
+      { '<leader>r', group = 'Rust' },
     }
   end,
 }

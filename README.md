@@ -107,6 +107,24 @@ Leader key: `,` (comma)
 - Git blame: Shows author and commit info after 500ms delay on current line
 - Gutter signs: Visual indicators for added/modified/deleted lines
 
+### Rust
+
+| Key | Action |
+|-----|--------|
+| `<leader>rd` | Open external docs (docs.rs) |
+| `<leader>rc` | Open Cargo.toml |
+| `<leader>rr` | Show runnables (run tests, examples) |
+| `<leader>re` | Expand macro under cursor |
+| `<leader>rm` | Rebuild procedural macros |
+| `<leader>rp` | Go to parent module |
+| `<leader>rj` | Join lines (Rust-aware) |
+
+**Rust Features:**
+- External documentation: Jump directly to docs.rs for any symbol
+- Macro expansion: See what macros expand to
+- Clippy integration: Get clippy suggestions as diagnostics
+- Inlay hints: See types inline without hovering
+
 ### Formatting
 
 | Key | Action |
@@ -137,6 +155,7 @@ Leader key: `,` (comma)
 - **blink.cmp**: Fast completion engine with snippets
 - **conform.nvim**: Code formatting
 - **nvim-treesitter**: Syntax highlighting and parsing
+- **rustaceanvim**: Enhanced Rust development tools
 
 ### File Management
 
@@ -177,6 +196,7 @@ Leader key: `,` (comma)
 │       ├── lazygit.lua       # LazyGit integration
 │       ├── lsp.lua           # LSP configuration
 │       ├── lualine.lua       # Statusline
+│       ├── rustaceanvim.lua  # Rust development tools
 │       ├── themes.lua        # Theme configuration
 │       ├── tree.lua          # File explorer
 │       └── which-key.lua     # Keybinding help

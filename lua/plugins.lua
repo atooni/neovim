@@ -23,6 +23,7 @@ require('lazy').setup {
   require 'plugins.which-key',
   require 'plugins.lsp',
   require 'plugins.completion',
+  require 'plugins.rustaceanvim',
   require 'plugins.tree',
   require 'plugins.fzf-lua',
   require 'plugins.lazygit',

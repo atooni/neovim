@@ -32,6 +32,10 @@ return {
         end,
         -- language specific setups if required
         -- See language server docs for config options
+        -- Skip rust_analyzer since rustaceanvim handles it
+        ['rust_analyzer'] = function()
+          -- Do nothing, rustaceanvim manages this
+        end,
         ['ts_ls'] = function()
           require('lspconfig')['ts_ls'].setup {
             on_attach = function(client, _)
