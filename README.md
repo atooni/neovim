@@ -49,6 +49,7 @@ This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 
 - Go to definition
 - Symbol renaming
+- Hover documentation (press `K` twice to enter the window and navigate)
 - Workspace and document symbols
 - Diagnostics with filtered warnings (unused variables hidden for TS)
 - Auto-completion with snippets
@@ -85,6 +86,7 @@ Leader key: `,` (comma)
 |-----|--------|
 | `<leader>ld` | Go to definition |
 | `<leader>lr` | Rename symbol |
+| `<leader>lh` or `K` | Show hover documentation |
 | `<leader>dd` | Document diagnostics |
 | `<leader>dw` | Workspace diagnostics |
 | `<leader>dr` | Find references |

@@ -161,6 +161,18 @@ return {
         ':lua vim.lsp.buf.rename()<CR>',
         { noremap = true, silent = true, desc = 'LSP: Rename symbol' }
       )
+      map(
+        'n',
+        '<leader>lh',
+        ':lua vim.lsp.buf.hover()<CR>',
+        { noremap = true, silent = true, desc = 'LSP: Show hover documentation' }
+      )
+      map(
+        'n',
+        'K',
+        ':lua vim.lsp.buf.hover()<CR>',
+        { noremap = true, silent = true, desc = 'LSP: Show hover documentation' }
+      )
     end,
   },
 }
