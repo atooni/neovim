@@ -170,6 +170,20 @@ return {
             rust = 'html',
           },
         },
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                'class: "([^"]*)"',
+                'class=("([^"]*)")',
+                [[class="([^"]*)"]],
+                [[class:\s*"([^"]*)"]],
+              },
+            },
+            colorDecorators = true,
+            showPixelEquivalents = true,
+          },
+        },
         root_dir = lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts', 'Cargo.toml'),
       }
 
