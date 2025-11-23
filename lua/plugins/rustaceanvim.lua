@@ -5,8 +5,22 @@ return {
   version = '^5',
   lazy = false,
   ft = { 'rust' },
+  dependencies = { 'mfussenegger/nvim-dap' },
   config = function()
+    -- Get Mason's install path for codelldb
+    local mason_path = vim.fn.stdpath 'data' .. '/mason'
+    local codelldb_path = mason_path .. '/bin/codelldb'
+    local liblldb_path = mason_path .. '/packages/codelldb/extension/lldb/lib/liblldb.so'
+
+    -- On macOS, the library has a different extension
+    if vim.fn.has 'mac' == 1 then
+      liblldb_path = mason_path .. '/packages/codelldb/extension/lldb/lib/liblldb.dylib'
+    end
+
     vim.g.rustaceanvim = {
+      dap = {
+        adapter = require('rustaceanvim.config').get_codelldb_adapter(codelldb_path, liblldb_path),
+      },
       server = {
         default_settings = {
           ['rust-analyzer'] = {
@@ -62,6 +76,12 @@ return {
       noremap = true,
       silent = true,
       desc = 'Rust: Join lines',
+    })
+
+    map('n', '<leader>rx', ':RustLsp debuggables<CR>', {
+      noremap = true,
+      silent = true,
+      desc = 'Rust: Show debuggables',
     })
   end,
 }

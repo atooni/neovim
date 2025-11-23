@@ -110,6 +110,7 @@ return {
           'prettier',
           'stylua',
           'rustfmt',
+          'codelldb',
         },
       }
     end,
