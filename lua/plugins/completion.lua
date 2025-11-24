@@ -11,7 +11,7 @@ return {
       preset = 'none',
       ['<Up>'] = { 'select_prev', 'fallback' },
       ['<Down>'] = { 'select_next', 'fallback' },
-      ['<C-CR>'] = { 'select_and_accept' },
+      ['<Tab>'] = { 'select_and_accept' },
     },
 
     appearance = {

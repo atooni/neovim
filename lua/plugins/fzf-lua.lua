@@ -15,6 +15,13 @@ return {
 
     map('n', '<leader>dd', ':FzfLua diagnostics_document<CR>', { desc = 'Open fzf for document diagnostics' })
     map('n', '<leader>dw', ':FzfLua diagnostics_workspace<CR>', { desc = 'Open fzf for workspace diagnostics' })
-    map('n', '<leader>dr', ':FzfLua lsp_references<CR>', { desc = 'Open fzf for LSP x references' })
+    map('n', '<leader>lr', ':FzfLua lsp_references<CR>', { desc = 'Open fzf for LSP references' })
+    map('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Show diagnostic under cursor' })
+    map('n', '<leader>dn', function()
+      vim.diagnostic.goto_next { float = true }
+    end, { desc = 'Jump to next diagnostic' })
+    map('n', '<leader>dp', function()
+      vim.diagnostic.goto_prev { float = true }
+    end, { desc = 'Jump to previous diagnostic' })
   end,
 }
