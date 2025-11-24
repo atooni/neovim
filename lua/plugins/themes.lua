@@ -1,11 +1,13 @@
 local theme = "kanagawa"
 
-return (
-{
+return {
   {
     "rebelot/kanagawa.nvim",
-    lazy = true,
-    priority = 1000
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd("colorscheme " .. theme)
+    end,
   },
   {
     "luisiacc/the-matrix.nvim",
@@ -17,12 +19,4 @@ return (
     lazy = true,
     priority = 1000,
   },
-  {
-    "LazyVim/LazyVim",
-    priority = 10000,  -- Load this after all themes are loaded
-    config = function()
-      vim.cmd("colorscheme " .. theme)
-    end,
-  }
 }
-)
