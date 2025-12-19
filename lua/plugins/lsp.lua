@@ -46,15 +46,7 @@ return {
               end,
               handlers = {
                 ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-                  print 'TS_LS DIAGNOSTICS HANDLER'
-                  print('Number of diagnostics: ' .. #result.diagnostics)
-
-                  -- Log each diagnostic
-                  for _, diag in ipairs(result.diagnostics) do
-                    vim.print(diag)
-                  end
-
-                  -- Filter out ALL unused variable warnings
+                  -- Filter out unused variable warnings (6133, 6138)
                   local ignored_codes = { 6133, 6138 }
                   local filtered_diagnostics = {}
                   for _, diagnostic in ipairs(result.diagnostics) do
@@ -62,8 +54,6 @@ return {
                       table.insert(filtered_diagnostics, diagnostic)
                     end
                   end
-
-                  print('After filtering: ' .. #filtered_diagnostics .. ' diagnostics')
 
                   -- Replace with filtered diagnostics
                   result.diagnostics = filtered_diagnostics
@@ -151,6 +141,14 @@ return {
       })
       map(
         'n',
+        '<leader>cf',
+        function()
+          plugin.format { bufnr = vim.api.nvim_get_current_buf() }
+        end,
+        { noremap = true, silent = true, desc = 'Format current file' }
+      )
+      map(
+        'n',
         '<leader>cp',
         ':FormatProject<CR>',
         { noremap = true, silent = true, desc = 'Format all files in the project' }
@@ -196,9 +194,9 @@ return {
       )
       map(
         'n',
-        '<leader>lr',
+        '<leader>lm',
         ':lua vim.lsp.buf.rename()<CR>',
-        { noremap = true, silent = true, desc = 'LSP: Rename symbol' }
+        { noremap = true, silent = true, desc = 'LSP: Rename/move symbol' }
       )
       map(
         'n',

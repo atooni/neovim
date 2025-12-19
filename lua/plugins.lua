@@ -41,6 +41,9 @@ require('lazy').setup {
           enable = true,
         },
       }
+      -- Enable treesitter-based folding
+      vim.opt.foldmethod = 'expr'
+      vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end,
   },
   {
