@@ -31,6 +31,7 @@ require('lazy').setup {
   require 'plugins.gitsigns',
   require 'plugins.lualine',
   require 'plugins.diffview',
+  require 'plugins.zellij',
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
