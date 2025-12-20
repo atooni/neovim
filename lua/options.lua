@@ -34,3 +34,7 @@ vim.opt.termguicolors = true
 -- Folding configuration (foldmethod set in treesitter config)
 vim.opt.foldlevel = 99
 vim.opt.foldnestmax = 10
+
+-- LSP performance - update diagnostics less frequently
+vim.opt.updatetime = 500  -- Wait 500ms instead of default 250ms
+-- Note: diagnostic config is in plugins/lsp.lua

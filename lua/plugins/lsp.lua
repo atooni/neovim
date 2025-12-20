@@ -13,6 +13,18 @@ return {
   {
     'williamboman/mason.nvim',
     config = function()
+      -- Configure diagnostics FIRST - disable updates while typing
+      vim.diagnostic.config({
+        update_in_insert = false,  -- Critical: don't update diagnostics while typing
+        virtual_text = {
+          spacing = 4,
+          prefix = '●',
+        },
+        signs = true,
+        underline = true,
+        severity_sort = true,
+      })
+
       local mason = require 'mason'
       mason.setup()
     end,
@@ -80,6 +92,15 @@ return {
           ['eslint'] = function()
             require('lspconfig').eslint.setup {
               root_dir = require('lspconfig').util.root_pattern('.git', 'package.json'),
+              on_attach = function(client, bufnr)
+                -- Run ESLint when leaving insert mode (not while typing)
+                vim.api.nvim_create_autocmd("InsertLeave", {
+                  buffer = bufnr,
+                  callback = function()
+                    pcall(vim.cmd, 'EslintFixAll')
+                  end,
+                })
+              end,
             }
           end,
 
@@ -129,8 +150,10 @@ return {
       vim.api.nvim_create_autocmd('BufWritePre', {
         pattern = { '*.ts', '*.js', '*.tsx', '*.jsx' },
         callback = function(args)
-          vim.cmd 'EslintFixAll'
-          plugin.format { bufnr = args.buf }
+          -- Try to fix eslint issues, but don't fail if it errors
+          pcall(vim.cmd, 'EslintFixAll')
+          -- Try to format, but don't fail if formatter errors (e.g., syntax errors)
+          pcall(plugin.format, { bufnr = args.buf })
         end,
       })
       vim.api.nvim_create_autocmd('BufWritePre', {
