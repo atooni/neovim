@@ -89,19 +89,10 @@ return {
             }
           end,
 
+          -- ESLint LSP disabled - using command-line eslint via BufWritePre instead
           ['eslint'] = function()
-            require('lspconfig').eslint.setup {
-              root_dir = require('lspconfig').util.root_pattern('.git', 'package.json'),
-              on_attach = function(client, bufnr)
-                -- Run ESLint when leaving insert mode (not while typing)
-                vim.api.nvim_create_autocmd("InsertLeave", {
-                  buffer = bufnr,
-                  callback = function()
-                    pcall(vim.cmd, 'EslintFixAll')
-                  end,
-                })
-              end,
-            }
+            -- Skip ESLint LSP setup - it has issues finding config in monorepos
+            -- Command-line ESLint still runs via EslintFixAll in BufWritePre autocmd
           end,
 
           -- tailwindcss is configured directly in nvim-lspconfig section
