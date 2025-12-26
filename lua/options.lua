@@ -15,10 +15,10 @@ vim.opt.shiftwidth = 0
 
 -- Indentation: use block-level indent (multiple of shiftwidth) instead of aligning with parenthesis
 vim.opt.cindent = true
-vim.opt.cinoptions = '(s,m1'  -- Use shiftwidth for parens, don't align
+vim.opt.cinoptions = '(s,m1' -- Use shiftwidth for parens, don't align
 
 -- Synchronizes the NeoVim Clipboard with the System ClipBoard
---vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = 'unnamedplus'
 
 -- vim.opt.scrolloff = 999
 
@@ -40,5 +40,5 @@ vim.opt.foldlevel = 99
 vim.opt.foldnestmax = 10
 
 -- LSP performance - update diagnostics less frequently
-vim.opt.updatetime = 500  -- Wait 500ms instead of default 250ms
+vim.opt.updatetime = 500 -- Wait 500ms instead of default 250ms
 -- Note: diagnostic config is in plugins/lsp.lua

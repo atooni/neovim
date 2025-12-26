@@ -15,7 +15,7 @@ return {
     config = function()
       -- Configure diagnostics FIRST - disable updates while typing
       vim.diagnostic.config({
-        update_in_insert = false,  -- Critical: don't update diagnostics while typing
+        update_in_insert = false, -- Critical: don't update diagnostics while typing
         virtual_text = {
           spacing = 4,
           prefix = '●',
@@ -32,74 +32,11 @@ return {
   {
     -- bridge mason and nvim-lspconfig
     'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'mason.nvim' , 'neovim/nvim-lspconfig'},
+    dependencies = { 'mason.nvim' },
     config = function()
-      -- Ensure lspconfig is loaded first
-      require('lspconfig')
-
       local mason_lsp = require 'mason-lspconfig'
       mason_lsp.setup {
         ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'rust_analyzer', 'tailwindcss' },
-        handlers = {
-          function(server_name)
-            require('lspconfig')[server_name].setup {}
-          end,
-          -- language specific setups if required
-          -- See language server docs for config options
-          -- Skip rust_analyzer since rustaceanvim handles it
-          ['rust_analyzer'] = function()
-            -- Do nothing, rustaceanvim manages this
-          end,
-          ['ts_ls'] = function()
-            require('lspconfig')['ts_ls'].setup {
-              on_attach = function(client, _)
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-              end,
-              handlers = {
-                ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-                  -- Filter out unused variable warnings (6133, 6138)
-                  local ignored_codes = { 6133, 6138 }
-                  local filtered_diagnostics = {}
-                  for _, diagnostic in ipairs(result.diagnostics) do
-                    if not contains(ignored_codes, diagnostic.code) then
-                      table.insert(filtered_diagnostics, diagnostic)
-                    end
-                  end
-
-                  -- Replace with filtered diagnostics
-                  result.diagnostics = filtered_diagnostics
-
-                  -- Call the default handler
-                  vim.lsp.handlers['textDocument/publishDiagnostics'](_, result, ctx, config)
-                end,
-              },
-            }
-          end,
-
-          ['lua_ls'] = function()
-            require('lspconfig')['lua_ls'].setup {
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { 'vim' },
-                  },
-                },
-              },
-            }
-          end,
-
-          -- ESLint LSP disabled - using command-line eslint via BufWritePre instead
-          ['eslint'] = function()
-            -- Skip ESLint LSP setup - it has issues finding config in monorepos
-            -- Command-line ESLint still runs via EslintFixAll in BufWritePre autocmd
-          end,
-
-          -- tailwindcss is configured directly in nvim-lspconfig section
-          ['tailwindcss'] = function()
-            -- Skip, configured separately
-          end,
-        },
       }
     end,
   },
@@ -170,13 +107,49 @@ return {
     end,
   },
   {
-    -- Required as it will be called by mason-lspconfig
+    -- LSP configuration using Neovim 0.11+ native vim.lsp.config
     'neovim/nvim-lspconfig',
     dependencies = { 'mason-lspconfig.nvim' },
     config = function()
+      -- Configure lua_ls
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' },
+            },
+          },
+        },
+      })
+
+      -- Configure ts_ls with custom handlers
+      vim.lsp.config('ts_ls', {
+        on_attach = function(client, _)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+        handlers = {
+          ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+            -- Filter out unused variable warnings (6133, 6138)
+            local ignored_codes = { 6133, 6138 }
+            local filtered_diagnostics = {}
+            for _, diagnostic in ipairs(result.diagnostics) do
+              if not contains(ignored_codes, diagnostic.code) then
+                table.insert(filtered_diagnostics, diagnostic)
+              end
+            end
+
+            -- Replace with filtered diagnostics
+            result.diagnostics = filtered_diagnostics
+
+            -- Call the default handler
+            vim.lsp.handlers['textDocument/publishDiagnostics'](_, result, ctx, config)
+          end,
+        },
+      })
+
       -- Configure tailwindcss with rust support
-      local lspconfig = require 'lspconfig'
-      lspconfig.tailwindcss.setup {
+      vim.lsp.config('tailwindcss', {
         filetypes = { 'rust', 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte' },
         init_options = {
           userLanguages = {
@@ -197,9 +170,16 @@ return {
             showPixelEquivalents = true,
           },
         },
-        root_dir = lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts', 'Cargo.toml'),
-      }
+        root_markers = { 'tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts', 'Cargo.toml' },
+      })
 
+      -- ESLint LSP disabled - using command-line eslint via BufWritePre instead
+      -- (not enabling eslint server)
+
+      -- Enable the configured LSP servers (except rust_analyzer which is managed by rustaceanvim)
+      vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss' })
+
+      -- Keymaps
       map(
         'n',
         '<leader>ld',

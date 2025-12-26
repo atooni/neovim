@@ -34,14 +34,20 @@ require('lazy').setup {
   require 'plugins.zellij',
   {
     'nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'rust' },
-        auto_install = false,
-        highlight = {
-          enable = true,
-        },
-      }
+      -- Install parsers (async, will install if not present)
+      require('nvim-treesitter').install { 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'rust' }
+
+      -- Enable treesitter highlighting for supported filetypes
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'lua', 'vim', 'vimdoc', 'query', 'typescript', 'rust', 'javascript', 'python', 'markdown' },
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
+
       -- Enable treesitter-based folding
       vim.opt.foldmethod = 'expr'
       vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
