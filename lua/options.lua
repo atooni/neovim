@@ -13,6 +13,10 @@ vim.opt.tabstop = 2
 -- Use the tabstop value for indent and dedent
 vim.opt.shiftwidth = 0
 
+-- Indentation: use block-level indent (multiple of shiftwidth) instead of aligning with parenthesis
+vim.opt.cindent = true
+vim.opt.cinoptions = '(s,m1'  -- Use shiftwidth for parens, don't align
+
 -- Synchronizes the NeoVim Clipboard with the System ClipBoard
 --vim.opt.clipboard = "unnamedplus"
 
