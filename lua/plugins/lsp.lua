@@ -36,7 +36,7 @@ return {
     config = function()
       local mason_lsp = require 'mason-lspconfig'
       mason_lsp.setup {
-        ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'rust_analyzer', 'tailwindcss' },
+        ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'rust_analyzer', 'tailwindcss', 'angularls' },
       }
     end,
   },
@@ -177,7 +177,7 @@ return {
       -- (not enabling eslint server)
 
       -- Enable the configured LSP servers (except rust_analyzer which is managed by rustaceanvim)
-      vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss' })
+      vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss', 'angularls' })
 
       -- Keymaps
       map(

@@ -4,6 +4,9 @@ vim.g.mapleader = ','
 -- Keymaps configuration
 local map = vim.keymap.set
 
+-- Visual block mode (Ctrl+v alternative for terminals that capture it)
+map('n', '<leader>v', '<C-v>', { noremap = true, silent = true, desc = 'Visual block mode' })
+
 -- Buffer navigation
 map('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true, desc = 'Go to next buffer' })
 map('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true, desc = 'Go to previous buffer' })

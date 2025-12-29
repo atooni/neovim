@@ -4,10 +4,19 @@ return {
   'ibhagwan/fzf-lua',
   config = function()
     local plugin = require 'fzf-lua'
-    plugin.setup()
+    plugin.setup({
+      files = {
+        path_shorten = 1,  -- shorten path to 1 char per directory
+      },
+      buffers = {
+        path_shorten = 1,  -- e.g. ~/p/n/lua/plugins/fzf-lua.lua
+      },
+    })
 
     map('n', '<leader>ff', ':FzfLua files<CR>', { desc = 'Open fzf for files by name' })
     map('n', '<leader>fg', ':FzfLua live_grep<CR>', { desc = 'Open fzf for grep' })
+    map('n', '<leader>fW', ':FzfLua grep_cword<CR>', { desc = 'Grep word under cursor' })
+    map('v', '<leader>fW', ':FzfLua grep_visual<CR>', { desc = 'Grep visual selection' })
     map('n', '<leader>fb', ':FzfLua buffers<CR>', { desc = 'Open fzf for the currently open buffers' })
     map('n', '<leader>fw', ':FzfLua lsp_workspace_symbols<CR>', { desc = 'Open fzf for symbols in the workspace' })
     map('n', '<leader>fd', ':FzfLua lsp_document_symbols<CR>', { desc = 'Open fzf for symbols in the document' })
